@@ -71,7 +71,25 @@ class CarroController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'modelo' => ['required', 'string'],
+            'placa'=> ['required', 'string', 'unique'],
+            'marca' => ['required', 'string'],
+            'ano' => ['required', 'date'],
+            'preco_diaria' =>['required', 'decimal'],
+            'descricao' => ['text'],
+        ]);
+
+        $task->update([
+            'modelo' => $validated['modelo'],
+            'placa' => $validated['placa'],
+            'marca' => $validated['marca'],
+            'ano' => $validated['ano'],
+            'preco_diaria' => $validated['preco_diaria'],
+            'descricao' => $validated['descricao'],
+        ]); 
+
+        return redirect()->route('carros.index');
     }
 
     /**
@@ -79,6 +97,7 @@ class CarroController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $carros->delete();
+        return redirect()->route('carros.index');
     }
 }
