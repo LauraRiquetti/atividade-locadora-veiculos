@@ -1,38 +1,56 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('conteudo')
-@endsection
-<!DOCTYPE html>
-<html   >
-    <head>
-        <title>Locadora de Carros</title>
-    </head>
-    <body>
+@section('title', 'Carros')
+@section('content')
+
+
+
+<h1> Lista de Carros</h1>
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Modelo</th>
+            <th>Placa</th>
+            <th>Marca</th>
+            <th>Ano</th>
+            <th>Preço da Diária</th>
+            <th>Descrição</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
         @forelse($carros as $carro)
-        <div class="carro">
-            <form action="{{ route('carros.update', $carro) }}" method="POST">
-                @csrf 
-                @method('GET')
-
-                <div class="row">
-                    <input type="checkbox" name="done" {{ $carro->done ? 'checked' : '' }}>
-                    <div style="flex:1;">
-                        <input type="text" name="title" value="{{ $carro->title }}">
-                        <div class="muted">#{{ $carro->id }} • {{ $carro->created_at->format('d/m/Y H:i') }}</div>
-                    </div>
-
-                    <button type="submit">Salvar</button>
-                </div>
-            </form>
-
-            <form action="{{ route('carros.destroy', $carro) }}" method="POST" style="margin-top:10px;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" onclick="return confirm('Excluir essa tarefa')">Excluir</button>
-            </form>
+        <tr>
+            <td>{{$carro->modelo }}</td>
+            <td>{{$carro-> placa}}</td>
+            <td>{{$carro->marca}}</td>
+            <td>{{$carro->ano}}</td>
+            <td>{{$carro->preco_diaria}}</td>
+            <td>{{$carro->descricao}}</td>
+            <td>{{$carro->status}}</td>
+        </tr>
+         @empty
+            <tr>
+                <td colspan="8" class="text-center">Nenhum carro cadastrado.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
+<div class="mb-1">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+        <div class="container">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="resources/views/carros/create.blade.php">Cadastrar carros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resources/views/carros/index.blade.php">Listar de Carros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resources/views/carros/edit.blade.php">Editar Carros</a>
+                </li>
+            </ul>
         </div>
-        @empty
-            <p>Nenhuma tarefa cadastrada ainda</p>
-        @endforelse  
-    </body>        
-</html>
+    </nav>
+</div>
+@endsection

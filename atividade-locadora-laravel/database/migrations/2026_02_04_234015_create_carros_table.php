@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('ano');
             $table->decimal('preco_diaria');
             $table->text('descricao')->opcional;
+            $table->enum('status', ['disponivel', 'alugado', 'manutencao']);
             $table->timestamps();
         });
     }

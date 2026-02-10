@@ -32,22 +32,25 @@ class CarroController extends Controller
     {
         $request->validate([
             'modelo' => 'required|string',
-            'placa'=> 'required|string|unique:carros,placa,' . $id,
+            'placa'=> 'required|string|unique:carros,placa,',
             'marca' => 'required|string',
             'ano' => 'required|integer',
-            'preco_diaria' => 'required|decimal',
-            'descricao' => 'text',
+            'preco_diaria' => 'required|numeric',
+            'descricao' => 'nullable|string',
+            'status' => 'required|enum'
         ]);
-        $aluno->update([
-            'modelo' =>$request->modelo,
-            'placa' =>$request->placa,
-            'marca' =>$request->marca,
-            'ano' =>$request->ano,
-            'preco_diaria' =>$request->preco_diaria,
-            'descricao' =>$request->descricao,
+        \App\Models\Carro::create([
+            'modelo' => $request->modelo,
+            'placa' => $request->placa,
+            'marca' => $request->marca,
+            'ano' => $request->ano,
+            'preco_diaria' => $request->preco_diaria,
+            'descricao' => $request->descricao,
+            'status' => $request->status,
         ]);
 
-        return redirect()->route('alunos.index');
+        return redirect()->route('carros.index')
+            ->with('success', 'Carro cadastrado com sucesso!');
     }
 
     /**
@@ -78,6 +81,7 @@ class CarroController extends Controller
             'ano' => ['required', 'date'],
             'preco_diaria' =>['required', 'decimal'],
             'descricao' => ['text'],
+            'status' => ['enum'],
         ]);
 
         $task->update([
@@ -87,6 +91,7 @@ class CarroController extends Controller
             'ano' => $validated['ano'],
             'preco_diaria' => $validated['preco_diaria'],
             'descricao' => $validated['descricao'],
+            'status' => $validated['status']
         ]); 
 
         return redirect()->route('carros.index');
