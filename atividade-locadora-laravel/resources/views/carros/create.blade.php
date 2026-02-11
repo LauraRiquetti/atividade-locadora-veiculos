@@ -2,7 +2,7 @@
 @section('title', 'Adicionar Carros')
 @section('content')
 
-
+<h1>Cadastro de Carros</h1>
 <div class="form">
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">Modelo do Carro</label>

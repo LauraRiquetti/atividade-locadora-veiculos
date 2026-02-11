@@ -39,7 +39,8 @@ class CarroController extends Controller
             'descricao' => 'nullable|string',
             'status' => 'required|enum'
         ]);
-        \App\Models\Carro::create([
+        
+        Carro::create([
             'modelo' => $request->modelo,
             'placa' => $request->placa,
             'marca' => $request->marca,

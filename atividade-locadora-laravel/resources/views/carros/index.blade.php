@@ -16,6 +16,7 @@
             <th>Preço da Diária</th>
             <th>Descrição</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,11 @@
             <td>{{$carro->preco_diaria}}</td>
             <td>{{$carro->descricao}}</td>
             <td>{{$carro->status}}</td>
+            <td>
+                <a href="{{ route('carros.edit', $carro->id) }}" class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+            </td>
         </tr>
          @empty
             <tr>
@@ -41,13 +47,10 @@
         <div class="container">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="resources/views/carros/create.blade.php">Cadastrar carros</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('carros.create') }}">Cadastrar carros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="resources/views/carros/index.blade.php">Listar de Carros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="resources/views/carros/edit.blade.php">Editar Carros</a>
+                    <a class="nav-link" href="{{ route('carros.index') }}">Listar de Carros</a>
                 </li>
             </ul>
         </div>

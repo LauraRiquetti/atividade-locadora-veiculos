@@ -36,7 +36,7 @@ class AluguelController extends Controller
             'data_final_entregue' => 'date',
             'status' => 'required|enum'
         ]);
-        \App\Models\Aluguel::create([
+        Aluguel::create([
             'data_inicio' => $request->data_inicio,
             'data_final_prevista' => $request->data_final_prevista,
             'data_final_entregue' => $request->data_final_entregue,
@@ -60,7 +60,7 @@ class AluguelController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('aluguels.edit');
     }
 
     /**

@@ -12,14 +12,15 @@
                 <div class="container">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Clientes</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('clientes.index') }}">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="resources/views/carros/index.blade.php">Carros</a>
+                            <a class="nav-link" href="{{ route('carros.index') }}">Carros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Alugueis</a>
+                            <a class="nav-link" href="{{ route('carros.edit') }}">Editar Carros</a>
                         </li>
+
                     </ul>
                 </div>
             </nav>

@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::orderByDesc('id')->get();
+        $clientes = Cliente::orderByDesc('id')->get();
 
         return view('clientes.index', compact('clientes'));
     }
@@ -36,7 +36,7 @@ class ClienteController extends Controller
             'senha' => 'required|string',
             'status' => 'required|enum',
         ]);
-        \App\Models\Carro::create([
+        Cliente::create([
             'nome' => $request->nome,
             'email' => $request->email,
             'senha' => $request->senha,
@@ -82,7 +82,7 @@ class ClienteController extends Controller
             'status' => $validated['status'],
         ]); 
 
-        return redirect()->route('carros.index');
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -91,6 +91,6 @@ class ClienteController extends Controller
     public function destroy(string $id)
     {
         $carros->delete();
-        return redirect()->route('carros.index');
+        return redirect()->route('clientes.index');
     }
 }

@@ -2,7 +2,7 @@
 @section('title', 'Adicionar CLiente')
 @section('content')
 
-
+<h1>Cadastro de Clientes</h1>
 <div class="form">
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">Nome Completo</label>
